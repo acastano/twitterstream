@@ -3,7 +3,7 @@ import XCTest
 
 class RequestConfigurationHelperTests: XCTestCase {
 
-    fileprivate let helper = RequestConfigurationHelper()
+    private let helper = RequestConfigurationHelper()
     
     
     func testValidURL() {

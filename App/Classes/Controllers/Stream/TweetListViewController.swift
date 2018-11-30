@@ -1,12 +1,12 @@
 
 import UIKit
 
-final class TweetListViewController: UIViewController {
+final class TweetListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    fileprivate var tweets = [Tweet]()
-    fileprivate let term = "tennis"
-    fileprivate let identifier = "identifier"
-    fileprivate let defaultCellHeight = CGFloat(100)
+    private var tweets = [Tweet]()
+    private let term = "tennis"
+    private let identifier = "identifier"
+    private let defaultCellHeight = CGFloat(100)
     
     @IBOutlet weak var noDataView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -17,7 +17,7 @@ final class TweetListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var reconnectButton: UIButton!
     
-    fileprivate var streamServices: StreamServices?
+    private var streamServices: StreamServices?
     
     class func controller(_ streamServices: StreamServices) -> TweetListViewController? {
     
@@ -43,7 +43,7 @@ final class TweetListViewController: UIViewController {
     
     //MARK: - Helpers
 
-    fileprivate func setup() {
+    private func setup() {
         
         tableView.estimatedRowHeight = defaultCellHeight
         
@@ -59,7 +59,7 @@ final class TweetListViewController: UIViewController {
         
     }
     
-    fileprivate func showLoading() {
+    private func showLoading() {
         
         if tweets.count == 0 {
             
@@ -75,7 +75,7 @@ final class TweetListViewController: UIViewController {
 
     }
     
-    fileprivate func loadTerm(_ term:String?) {
+    private func loadTerm(_ term:String?) {
 
         showLoading()
         
@@ -91,7 +91,7 @@ final class TweetListViewController: UIViewController {
         
     }
     
-    fileprivate func process(_ tweet:Tweet?, error:NSError?) {
+    private func process(_ tweet:Tweet?, error:NSError?) {
         
         LoadingUtils.hideLoading(view)
 
@@ -136,7 +136,7 @@ final class TweetListViewController: UIViewController {
     }
     
     //MARK: - UITableView Source/Delegate
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let count = tweets.count
@@ -145,7 +145,7 @@ final class TweetListViewController: UIViewController {
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for:indexPath) as? TweetViewCell
         

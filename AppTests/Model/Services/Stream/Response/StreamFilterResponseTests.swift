@@ -3,7 +3,7 @@ import XCTest
 
 class StreamFilterResponseTests: XCTestCase {
 
-    fileprivate let response = StreamFilterResponse()
+    private let response = StreamFilterResponse()
     
     func testPopulateReturnsTweetWithValidJSON() {
         

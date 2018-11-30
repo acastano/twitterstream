@@ -3,7 +3,7 @@ import Foundation
 
 class RemoteFailureImpl: NSObject, Remote {
     
-    fileprivate let dataTask: DataTask
+    private let dataTask: DataTask
     
     required init(dataTask:DataTask, timeout:Double) {
     

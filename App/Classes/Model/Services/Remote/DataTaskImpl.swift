@@ -3,13 +3,13 @@ import Foundation
 
 final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
     
-    fileprivate var responseData = NSMutableData()
-    fileprivate var completion: AnyObjectErrorCompletion?
+    private var responseData = NSMutableData()
+    private var completion: AnyObjectErrorCompletion?
     
     func loadData(_ url:URL?, method:RequestMethod, headers:[String:String], parameters:String?, timeout:Double, completion:@escaping AnyObjectErrorCompletion) {
-    
+
         if let url = url {
-    
+
             self.completion = completion
             
             let session = Foundation.URLSession(configuration: .default, delegate: self, delegateQueue: nil)
@@ -18,7 +18,7 @@ final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
             var mutableRequest = URLRequest(url:url)
             
             mutableRequest.timeoutInterval = timeout
-          
+
             mutableRequest.httpMethod = method.rawValue
             
             mutableRequest.allHTTPHeaderFields = headers
@@ -34,7 +34,7 @@ final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
             dataTask.resume()
             
         } else {
-    
+
             let error = NSError(domain:ErrorDomain.dataTask.rawValue, code:0, userInfo:nil)
             
             completion(nil, error)
@@ -44,7 +44,7 @@ final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-    
+
         completion?(nil, error as NSError?)
         
     }
@@ -60,7 +60,7 @@ final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
 
         responseData.append(data)
-        
+
         if let json = parseJSONData (data) {
             
             completion?(json, nil)
@@ -68,10 +68,10 @@ final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
             responseData.length = 0
             
         }
-    
+
     }
     
-    fileprivate func parseJSONData(_ data:Data?) -> AnyObject? {
+    private func parseJSONData(_ data:Data?) -> AnyObject? {
         
         var responseData: Any?
         

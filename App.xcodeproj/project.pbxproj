@@ -512,7 +512,6 @@
 			isa = PBXGroup;
 			children = (
 				411A00C11D175E3900A9ADBB /* Extensions */,
-				41F1703C1D06FC7F00E401D2 /* Alert */,
 				41F170301D06F9AF00E401D2 /* Window */,
 				41C7E2931D024B07007EC83C /* Loading */,
 			);
@@ -668,13 +667,6 @@
 			path = Window;
 			sourceTree = "<group>";
 		};
-		41F1703C1D06FC7F00E401D2 /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Alert;
-			sourceTree = "<group>";
-		};
 		41F34AD91D06145100A6469F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,16 +721,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Andrés Castaño";
 				TargetAttributes = {
 					41C5743A1BF5491500EE38EB = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 					};
 					41C5744E1BF5491500EE38EB = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						TestTargetID = 41C5743A1BF5491500EE38EB;
 					};
 				};
@@ -928,6 +920,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41903A391BF7C207009E56E4 /* Config.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				ENABLE_TESTABILITY = YES;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
@@ -935,6 +937,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41903A391BF7C207009E56E4 /* Config.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -942,7 +953,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41903A3A1BF7C207009E56E4 /* Debug.xcconfig */;
 			buildSettings = {
-				SWIFT_VERSION = 3.0;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Debug;
 		};
@@ -950,7 +962,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41903A3E1BF7C207009E56E4 /* Release.xcconfig */;
 			buildSettings = {
-				SWIFT_VERSION = 3.0;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 			};
 			name = Release;
 		};
@@ -959,7 +972,7 @@
 			baseConfigurationReference = 41903A411BF7C207009E56E4 /* TestsDebug.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = App;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 			};
 			name = Debug;
 		};
@@ -968,7 +981,7 @@
 			baseConfigurationReference = 41903A421BF7C207009E56E4 /* TestsRelease.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = App;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 			};
 			name = Release;
 		};

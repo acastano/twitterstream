@@ -3,8 +3,8 @@ import Foundation
 
 final class StreamFilterRequestConfiguration: RequestConfiguration {
     
-    fileprivate let term: String?
-    fileprivate let helper = RequestConfigurationHelper()
+    private let term: String?
+    private let helper = RequestConfigurationHelper()
     
     init(term:String?) {
         

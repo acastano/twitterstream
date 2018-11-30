@@ -27,7 +27,7 @@ final class LoadingUtils: NSObject {
         
     }
     
-    fileprivate class func loadingLabel(_ message:String) -> UIView {
+    private class func loadingLabel(_ message:String) -> UIView {
     
         let loadingView = UILabel()
     
@@ -41,7 +41,7 @@ final class LoadingUtils: NSObject {
     
     }
     
-    fileprivate class func addLoadingView(_ loadingView:UIView, to view:UIView) {
+    private class func addLoadingView(_ loadingView:UIView, to view:UIView) {
         
         loadingView.tag = loadingTag
         

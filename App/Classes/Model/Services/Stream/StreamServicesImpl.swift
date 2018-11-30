@@ -3,8 +3,8 @@ import Foundation
 
 final class StreamServicesImpl: StreamServices {
     
-    fileprivate let remote: Remote
-    fileprivate var completion: TweetErrorCompletion?
+    private let remote: Remote
+    private var completion: TweetErrorCompletion?
 
     init (remote: Remote) {
         

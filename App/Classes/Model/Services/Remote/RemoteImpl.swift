@@ -3,8 +3,8 @@ import Foundation
 
 final class RemoteImpl: NSObject, Remote {
     
-    fileprivate let timeout: Double
-    fileprivate let dataTask: DataTask
+    private let timeout: Double
+    private let dataTask: DataTask
     
     required init(dataTask:DataTask, timeout:Double) {
         

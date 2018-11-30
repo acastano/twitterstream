@@ -3,7 +3,7 @@ import XCTest
 
 class TweetListViewControllerTests: XCTestCase {
     
-    fileprivate var controller: TweetListViewController?
+    private var controller: TweetListViewController?
     
     func testSetup() {
         
@@ -50,8 +50,7 @@ class TweetListViewControllerTests: XCTestCase {
         controller = TweetListViewController.controller(StreamServicesSuccessImpl())
         
         controller?.view.layoutIfNeeded()
-
-        let cell = controller?.tableView(controller!.tableView, cellForRowAtIndexPath: IndexPath(row: 0, section: 0))
+        let cell = controller?.tableView(controller!.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
 
         XCTAssertTrue(cell is TweetViewCell)
         
@@ -85,7 +84,7 @@ class TweetListViewControllerTests: XCTestCase {
         
         controller?.retryTapped(self)
         
-        let cell = controller?.tableView(controller!.tableView, cellForRowAtIndexPath: IndexPath(row: 0, section: 0))
+        let cell = controller?.tableView(controller!.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
 
         XCTAssertTrue(cell is TweetViewCell)
         

@@ -3,7 +3,7 @@ import Foundation
 
 final class StreamServicesFailFirstSuccessAfterImpl: StreamServices {
 
-    fileprivate var calls = 0
+    private var calls = 0
     
     func filterByTracking(_ term: String?, completion: TweetErrorCompletion?) {
         
@@ -23,7 +23,7 @@ final class StreamServicesFailFirstSuccessAfterImpl: StreamServices {
         
     }
     
-    fileprivate func tweet() -> Tweet {
+    private func tweet() -> Tweet {
         
         let instance = Tweet(id:1)
         

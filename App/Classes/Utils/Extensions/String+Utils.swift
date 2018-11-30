@@ -23,14 +23,13 @@ extension String {
     
     func urlEncodedStringWithEncoding() -> String? {
         
-        let allowedCharacterSet = (CharacterSet.urlQueryAllowed as NSCharacterSet).mutableCopy() as! NSMutableCharacterSet
+		let allowedCharacterSet = (CharacterSet.urlQueryAllowed as NSCharacterSet).mutableCopy() as! NSMutableCharacterSet
         
         allowedCharacterSet.removeCharacters(in: "\n:#/?@!$&'()*+,;=")
         
         allowedCharacterSet.addCharacters(in: "[]")
         
         return addingPercentEncoding(withAllowedCharacters: allowedCharacterSet as CharacterSet)
-        
         
     }
     
@@ -44,7 +43,7 @@ extension String {
             
             let digestLen = Int(CC_SHA1_DIGEST_LENGTH)
             
-            let result = UnsafeMutableRawPointer.allocate(bytes: digestLen, alignedTo: 0)
+            let result = UnsafeMutableRawPointer.allocate(byteCount: digestLen, alignment: 0)
             
             
             let keyLen = key.lengthOfBytes(using: String.Encoding.utf8)
@@ -59,8 +58,7 @@ extension String {
         
     }
     
-    fileprivate func dateFormatter(_ format:String) -> DateFormatter {
-        
+    private func dateFormatter(_ format:String) -> DateFormatter {
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = format
@@ -68,7 +66,5 @@ extension String {
         dateFormatter.locale = Locale(identifier:"en")
         
         return dateFormatter
-        
     }
-    
 }

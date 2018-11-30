@@ -9,7 +9,7 @@ final class StreamServicesSuccessImpl: StreamServices {
         
     }
     
-    fileprivate func tweet() -> Tweet {
+    private func tweet() -> Tweet {
         
         let instance = Tweet(id:1)
         

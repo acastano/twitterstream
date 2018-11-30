@@ -6,7 +6,7 @@ final class StreamFilterResponse: Response {
     var tweet: Tweet?
     var error: NSError?
     
-    fileprivate let parser: StreamParser
+    private let parser: StreamParser
     
     init () {
                 

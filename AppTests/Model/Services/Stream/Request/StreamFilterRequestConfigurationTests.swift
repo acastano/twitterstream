@@ -3,7 +3,7 @@ import XCTest
 
 class StreamFilterRequestConfigurationTests: XCTestCase {
     
-    fileprivate let request = StreamFilterRequestConfiguration(term:"term")
+    private let request = StreamFilterRequestConfiguration(term:"term")
 
     func testValidURL() {
         

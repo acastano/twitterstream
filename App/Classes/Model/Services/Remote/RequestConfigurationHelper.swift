@@ -3,8 +3,8 @@ import Foundation
 
 final class RequestConfigurationHelper {
     
-    fileprivate let host: String?
-    fileprivate let requestProtocol: RequestProtocol?
+    private let host: String?
+    private let requestProtocol: RequestProtocol?
     
     init() {
         
