@@ -1,10 +1,7 @@
-
 enum RequestAttributes: String {
-    
-    case path = "path"
-    case host = "host"
-    case port = "port"
-    case headers = "headers"
-    case requestProtocol = "requestProtocol"
-    
+    case path
+    case host
+    case port
+    case headers
+    case requestProtocol
 }

@@ -1,7 +1,4 @@
-
 enum RequestProtocol: String {
-    
-    case http = "http"
-    case https = "https"
-    
+    case http
+    case https
 }

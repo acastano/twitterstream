@@ -1,92 +1,45 @@
-
+import RxSwift
 import Foundation
 
-final class DataTaskImpl: NSObject, DataTask, URLSessionDataDelegate {
-    
-    private var responseData = NSMutableData()
-    private var completion: AnyObjectErrorCompletion?
-    
-    func loadData(_ url:URL?, method:RequestMethod, headers:[String:String], parameters:String?, timeout:Double, completion:@escaping AnyObjectErrorCompletion) {
+final class DataTaskImpl: DataTask {
+    private let queue: OperationQueue?
 
-        if let url = url {
+    init(queue: OperationQueue?) {
+        self.queue = queue
+    }
 
-            self.completion = completion
-            
-            let session = Foundation.URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-            
-            
-            var mutableRequest = URLRequest(url:url)
-            
-            mutableRequest.timeoutInterval = timeout
+    private let sessionDelegate = SessionDelegate()
 
-            mutableRequest.httpMethod = method.rawValue
-            
-            mutableRequest.allHTTPHeaderFields = headers
-            
-            if let data = parameters?.data(using: String.Encoding.utf8) {
+    func loadData(_ requestConfiguration: RequestConfiguration) -> Observable<[String : Any]> {
 
-                mutableRequest.httpBody = data
-                
+        var dataTask: URLSessionDataTask?
+
+        return Observable<[String : Any]>.create { [weak self] observer in
+
+            self?.sessionDelegate.observer = observer
+
+            if let url = requestConfiguration.url() {
+                var urlRequest = URLRequest(url:url)
+                urlRequest.timeoutInterval = 0
+                urlRequest.httpMethod = requestConfiguration.method().rawValue
+                urlRequest.allHTTPHeaderFields = requestConfiguration.headers()
+
+                if let data = requestConfiguration.parameters().data(using: String.Encoding.utf8) {
+                    urlRequest.httpBody = data
+                }
+
+                let session = URLSession(configuration: .default, delegate: self?.sessionDelegate, delegateQueue: self?.queue)
+
+                dataTask = session.dataTask(with: urlRequest)
+                dataTask?.resume()
+            } else {
+                let error = NSError(domain:ErrorDomain.dataTask.rawValue, code:0, userInfo:nil)
+                observer.onError(error)
             }
-
-            let dataTask = session.dataTask(with: mutableRequest)
-            
-            dataTask.resume()
-            
-        } else {
-
-            let error = NSError(domain:ErrorDomain.dataTask.rawValue, code:0, userInfo:nil)
-            
-            completion(nil, error)
-            
+            return Disposables.create {
+                dataTask?.cancel()
+                self?.sessionDelegate.observer = nil
+            }
         }
-        
     }
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-
-        completion?(nil, error as NSError?)
-        
-    }
-    
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        
-        responseData.length = 0
-        
-        completionHandler(.allow)
-        
-    }
-    
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-
-        responseData.append(data)
-
-        if let json = parseJSONData (data) {
-            
-            completion?(json, nil)
-            
-            responseData.length = 0
-            
-        }
-
-    }
-    
-    private func parseJSONData(_ data:Data?) -> AnyObject? {
-        
-        var responseData: Any?
-        
-        if let data = data {
-            
-            do {
-                
-                responseData = try JSONSerialization.jsonObject(with: data, options:.mutableContainers)
-                
-            } catch {}
-            
-        }
-        
-        return responseData as AnyObject?
-        
-    }
-
 }

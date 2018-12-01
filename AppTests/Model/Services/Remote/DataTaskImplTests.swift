@@ -1,20 +1,40 @@
-
 import XCTest
+import RxSwift
 
-class DataTaskImplTests: XCTestCase {
-    
+final class DataTaskImplTests: XCTestCase {
+    private let disposeBag = DisposeBag()
+
     func testNoURLReturnsError() {
-        
-        let task = DataTaskImpl()
-        
-        task.loadData(nil, method: .POST, headers: [:], parameters: nil, timeout: 0) { data, error in
-            
-            XCTAssert(error != nil)
-            
-            XCTAssert(error?.domain == ErrorDomain.dataTask.rawValue)
-            
-        }
-        
+        let task = DataTaskImpl(queue: nil)
+        let request = StreamFilterRequestConfigurationNoURL(term: nil)
+        var success = false
+        task.loadData(request)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onError: { error in
+                let error = error as NSError
+                XCTAssert(error.domain == ErrorDomain.dataTask.rawValue)
+                success = true
+            }).disposed(by: disposeBag)
+        XCTAssertTrue(success)
     }
-    
+
+    func testDataTaskWrongProtocol() {
+        let task = DataTaskImpl(queue: OperationQueue.main)
+        let request = StreamFilterRequestConfigurationProtocolNotValid(term: nil)
+
+        let expectation = XCTestExpectation(description: "Fail call")
+
+        var success = false
+
+        task.loadData(request)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onError: { any in
+                success = true
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertTrue(success)
+    }
 }

@@ -1,6 +1,4 @@
-
 enum TweetAttributes: String {
-    
     case id
     case user
     case text
@@ -8,5 +6,4 @@ enum TweetAttributes: String {
     case location
     case screen_name
     case timestamp_ms
-    
 }

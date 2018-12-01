@@ -1,8 +1,5 @@
-
 import UIKit
 
-class Window: UIWindow {
-    
+final class Window: UIWindow {
     override func makeKeyAndVisible() {}
-    
 }

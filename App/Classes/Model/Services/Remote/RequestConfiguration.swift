@@ -1,4 +1,4 @@
-
+import RxSwift
 import Foundation
 
 protocol RequestConfiguration {
@@ -7,6 +7,5 @@ protocol RequestConfiguration {
     func action() -> String
     func parameters() -> String
     func method() -> RequestMethod
-    func headers() -> [String:String]
-    
+    func headers() -> [String:String]    
 }

@@ -1,2 +1,7 @@
 App.xcodeproj/project.xcworkspace/xcuserdata
 App.xcodeproj/xcuserdata
+
+#Carthage
+Carthage/Checkouts
+*.version
+*.bcsymbolmap

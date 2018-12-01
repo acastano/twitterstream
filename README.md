@@ -14,11 +14,11 @@
 
 * Run the test using CMD + U
 
-* The project has one view controller called TweetListViewController that shows a list of tweets being tracked. If there is no tweets available you have the chance to retry. In case the stream fails you are able to reconnect also.
+* The project has one view controller called TweetListViewController that shows a list of tweets being tracked. Wait until tweets are shown if nothing is shown in next 30 seconds you will have a chance to retry.
 
-* Unit tests are done with XCTest. The test covearage is 87% there are some bits that will be better cover using App testing with other tools. It would be possible to add more coverage using something like OCMock for Apple classes. (NSURLSession, etc) for that we will have to do some unit testing in Objective C where we pretent to use OCMock. 
+* Unit tests are done with XCTest. The test covearage is 97.4% However, there could be code "tested" but still missing valid use cases. 
 
-* There are not third party libraries and the code is written using the below coding standards
+* The only third party libraries are RxSwift and RxCocoa and the code is written using the below coding standards
 
 ## Coding standards ##
 
@@ -28,7 +28,6 @@
 
 ### Spacing ###
 
-* One line between any line of code (Not on variables definitions)
 * Method braces always open in the same line
 * Use one space separation between any operators for clarity
 
@@ -59,8 +58,7 @@
 
 ### Use of self ###
 
-* Avoid using self since Swift doesn’t require it to access objects or
-methods
+* Avoid using self since Swift doesn’t require it to access objects or methods
 
 ### Completion blocks ###
 

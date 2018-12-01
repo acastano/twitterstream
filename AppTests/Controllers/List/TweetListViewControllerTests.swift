@@ -1,188 +1,128 @@
-
 import XCTest
+import RxSwift
+import RxCocoa
 
-class TweetListViewControllerTests: XCTestCase {
+final class TweetListViewControllerTests: XCTestCase {
     
     private var controller: TweetListViewController?
     
     func testSetup() {
-        
         controller = TweetListViewController.controller(StreamServicesSuccessImpl())
-        
         controller?.view.layoutIfNeeded()
-        
-        XCTAssertTrue(controller?.noDataLabel.text == "TweetListViewControllerNoData")
-        
-        XCTAssertTrue(controller?.titleLabel?.text == "TweetListViewControllerTerm: tennis")
-        
-        XCTAssertTrue(controller?.retryButton.titleLabel?.text == "TweetListViewControllerRetry")
-        
+
+        XCTAssertTrue(controller?.titleLabel?.text == "TweetListViewControllerTerm: Tennis")
         XCTAssertTrue(controller?.reconnectButton.titleLabel?.text == "TweetListViewControllerReconnect")
-        
     }
     
     func testOutletsAreAssigned() {
-        
         controller = TweetListViewController.controller(StreamServicesSuccessImpl())
-        
         controller?.view.layoutIfNeeded()
 
-        XCTAssertTrue(controller?.noDataView != nil)
-        
-        XCTAssertTrue(controller?.contentView != nil)
-        
-        XCTAssertTrue(controller?.titleLabel != nil)
-        
-        XCTAssertTrue(controller?.noDataLabel != nil)
-        
-        XCTAssertTrue(controller?.retryButton != nil)
-        
-        XCTAssertTrue(controller?.reconnectView != nil)
-        
         XCTAssertTrue(controller?.tableView != nil)
-        
+        XCTAssertTrue(controller?.titleLabel != nil)
+        XCTAssertTrue(controller?.contentView != nil)
+        XCTAssertTrue(controller?.reconnectView != nil)
         XCTAssertTrue(controller?.reconnectButton != nil)
-        
     }
     
     func testTweetLabelsAreSet() {
-        
         controller = TweetListViewController.controller(StreamServicesSuccessImpl())
-        
+
         controller?.view.layoutIfNeeded()
-        let cell = controller?.tableView(controller!.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        let cell = controller?.tableView.cellForRow(at: IndexPath(row: 0, section: 0))
 
         XCTAssertTrue(cell is TweetViewCell)
-        
         let tweetCell = cell as? TweetViewCell
-        
+
         XCTAssertTrue(tweetCell?.tweetLabel.text == "text")
         XCTAssertTrue(tweetCell?.dateLabel.text == "Fri Jan 02 1970")
         XCTAssertTrue(tweetCell?.userLabel.text == "name / @screen_name")
-        
     }
-    
-    func testDataNotAvailableShowsNoData() {
-        
-        controller = TweetListViewController.controller(StreamServicesFailureImpl())
-        
-        controller?.view.layoutIfNeeded()
-        
-        XCTAssertTrue(controller?.contentView.isHidden == true)
-        XCTAssertTrue(controller?.noDataView.isHidden == false)
-        
-    }
-    
+
     func testRetrySetsViewsAfterNoDataShown() {
-        
-        controller = TweetListViewController.controller(StreamServicesFailFirstSuccessAfterImpl())
-        
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFailureFirstSuccessAfter()))
+
         controller?.view.layoutIfNeeded()
-        
-        XCTAssertTrue(controller?.contentView.isHidden == true)
-        XCTAssertTrue(controller?.noDataView.isHidden == false)
-        
-        controller?.retryTapped(self)
-        
-        let cell = controller?.tableView(controller!.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+
+        XCTAssertTrue(controller?.tableView.tableFooterView == controller?.reconnectView)
+
+        var cell = controller?.tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+
+        XCTAssertTrue(cell == nil)
+
+        controller?.viewDidLoad()
+
+        cell = controller?.tableView.cellForRow(at: IndexPath(row: 0, section: 0))
 
         XCTAssertTrue(cell is TweetViewCell)
-        
+
         let tweetCell = cell as? TweetViewCell
-        
-        XCTAssertTrue(tweetCell?.tweetLabel.text == "text")
-        XCTAssertTrue(tweetCell?.dateLabel.text == "Fri Jan 02 1970")
-        XCTAssertTrue(tweetCell?.userLabel.text == "name / @screen_name")
 
+        XCTAssertTrue(tweetCell?.tweetLabel.text == "X just posted this limited service announcement https://t.co/3S98Iq5TWJ")
+        XCTAssertTrue(tweetCell?.dateLabel.text == "Fri Jun 24 2016")
+        XCTAssertTrue(tweetCell?.userLabel.text == "Rhys Southan / @rhyssouthan")
     }
 
-    func testReconnectViewIsNotShowIfNoTweetShown() {
-        
-        controller = TweetListViewController.controller(StreamServicesFailureImpl())
-        
+    func testReconnectViewIsShowWhenError() {
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFailure()))
         controller?.view.layoutIfNeeded()
-        
-        let count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
-        XCTAssertTrue(count == 0)
-        
-        XCTAssertTrue(controller?.tableView.tableFooterView == nil)
-        
-    }
-    
-    func testReconnectViewIsAddedAfterHavingMoreThanOneTweet() {
-        
-        controller = TweetListViewController.controller(StreamServicesSuccessFirstFailAfterImpl())
-        
-        controller?.view.layoutIfNeeded()
-        
-        let count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
-        XCTAssertTrue(count == 1)
-        
-        controller?.retryTapped(self)
         
         XCTAssertTrue(controller?.tableView.tableFooterView == controller?.reconnectView)
-        
+    }
+
+    func testReconnectViewIsAddedAfterHavingMoreThanOneTweet() {
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFirstSuccessFailureAfter()))
+        controller?.view.layoutIfNeeded()
+
+        let count = controller?.tableView.numberOfRows(inSection: 0)
+
+        XCTAssertTrue(count == 1)
+        XCTAssertTrue(controller?.tableView.tableFooterView == nil)
+
+        controller?.viewDidLoad()
+
+        XCTAssertTrue(controller?.tableView.tableFooterView == controller?.reconnectView)
     }
 
     func testRepeatedTweetIsNotAdded() {
-        
-        controller = TweetListViewController.controller(StreamServicesSuccessImpl())
-        
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskTweetSuccess()))
         controller?.view.layoutIfNeeded()
 
-        let count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
-        
+        let count = controller?.tableView.numberOfRows(inSection: 0)
         XCTAssertTrue(count == 1)
 
-        controller?.retryTapped(self)
-        
+        controller?.viewDidLoad()
         XCTAssertTrue(count == 1)
-        
     }
-    
-    func testMaxTweetEqualToFive() {
-        
-        controller = TweetListViewController.controller(StreamServicesMultipleSuccessImpl())
-        
+
+    func testMaxTweetsEqualToFive() {
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskMultipleSuccess()))
         controller?.view.layoutIfNeeded()
-        
-        var count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
+
+        var count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
         XCTAssertTrue(count == 1)
-        
-        controller?.retryTapped(self)
-        
-        count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
+
+        controller?.viewDidLoad()
+        count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
         XCTAssertTrue(count == 2)
-        
-        controller?.retryTapped(self)
-        
-        count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
+
+        controller?.viewDidLoad()
+        count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
         XCTAssertTrue(count == 3)
-        
-        controller?.retryTapped(self)
-        
-        count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
+
+        controller?.viewDidLoad()
+        count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
         XCTAssertTrue(count == 4)
-        
-        controller?.retryTapped(self)
-        
-        count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
-        
-        XCTAssertTrue(count == 5)
-        
-        controller?.retryTapped(self)
-        
-        count = controller?.tableView(controller!.tableView, numberOfRowsInSection: 0) ?? 0
 
+        controller?.viewDidLoad()
+        count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
+
+        controller?.viewDidLoad()
+        count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
         XCTAssertTrue(count == 5)
-        
+
+        controller?.viewDidLoad()
+        count = controller?.tableView.numberOfRows(inSection: 0) ?? 0
+        XCTAssertTrue(count == 5)
     }
-
 }

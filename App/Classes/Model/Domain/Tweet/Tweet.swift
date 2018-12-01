@@ -1,18 +1,10 @@
-
 import Foundation
 
-class Tweet {
+struct Tweet {
     
-    let id: NSNumber
-    var text: String?
-    var name: String?
-    var screen_name: String?
-    var timestamp_ms: String?
-    
-    init (id:NSNumber) {
-        
-        self.id = id
-        
-    }
-    
+    let id: Int
+    let text: String?
+    let name: String?
+    let screen_name: String?
+    let timestamp_ms: String?    
 }

@@ -1,10 +1,7 @@
-
+import RxSwift
 import Foundation
 
-typealias TweetErrorCompletion = (Tweet?, NSError?) -> ()
-
 protocol StreamServices {
-
-    func filterByTracking(_ term:String?, completion:TweetErrorCompletion?)
-    
+    var filterError: PublishSubject<Error> { get }
+    func filterByTracking(_ term:String) -> Observable<[Tweet]>
 }

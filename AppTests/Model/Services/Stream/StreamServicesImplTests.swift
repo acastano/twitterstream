@@ -1,34 +1,53 @@
-
 import XCTest
+import RxSwift
 
-class StreamServicesImplTests: XCTestCase {
+final class StreamServicesImplTests: XCTestCase {
+    private let disposeBag = DisposeBag()
 
-    func testTemperatureTermSuccess() {
-        
-        let remote = RemoteSuccessImpl(dataTask: DataTaskTweetSuccess(), timeout: 0)
-        
-        let services = StreamServicesImpl(remote: remote)
-        
-        services.filterByTracking(nil) { tweet, error in
-         
-            XCTAssert(tweet != nil && error == nil)
-            
-        }
-        
+    func testTermSuccess() {
+        let services = StreamServicesImpl(dataTask: DataTaskTweetSuccess())
+
+        var success = false
+        services.filterByTracking("")
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { tweet in
+                XCTAssert(tweet.count == 1)
+                success = true
+            }).disposed(by: disposeBag)
+        XCTAssertTrue(success)
     }
     
-    func testTemperatureTermFailure() {
-        
-        let remote = RemoteFailureImpl(dataTask: DataTaskFailure(), timeout: 0)
-        
-        let services = StreamServicesImpl(remote: remote)
-        
-        services.filterByTracking(nil) { tweet, error in
-            
-            XCTAssert(tweet == nil && error != nil)
-            
-        }
-        
+    func testTermFailure() {
+        let services = StreamServicesImpl(dataTask: DataTaskFailure())
+
+        var success = false
+        services.filterError.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { error in
+                success = true
+            }).disposed(by: disposeBag)
+
+        services.filterByTracking("")
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { tweet in
+                XCTAssert(tweet.count == 0)
+            }).disposed(by: disposeBag)
+        XCTAssertTrue(success)
     }
-    
+
+    func testTermCorrupted() {
+        let services = StreamServicesImpl(dataTask: DataTaskTweetSuccessButCorrupted())
+
+        var success = false
+        services.filterError.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { error in
+                success = true
+            }).disposed(by: disposeBag)
+
+        services.filterByTracking("")
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { tweet in
+                XCTAssert(tweet.count == 0)
+            }).disposed(by: disposeBag)
+        XCTAssertTrue(success)
+    }
 }

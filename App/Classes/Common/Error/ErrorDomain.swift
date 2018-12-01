@@ -1,7 +1,6 @@
-
 enum ErrorDomain: String {
-    
-    case stream = "stream"
-    case dataTask = "dataTask"
-    
+    case stream
+    case dataTask
+    case parsing
+    case error
 }
