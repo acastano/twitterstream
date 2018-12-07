@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		411A00C31D175E5D00A9ADBB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A00C21D175E5D00A9ADBB /* String+Utils.swift */; };
 		411A00C41D17609800A9ADBB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A00C21D175E5D00A9ADBB /* String+Utils.swift */; };
+		4125458521B9972200C775E1 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125458421B9972200C775E1 /* TweetViewModel.swift */; };
+		4125458621B9D0FC00C775E1 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125458421B9972200C775E1 /* TweetViewModel.swift */; };
 		41410BCA21B15FA900C242CF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41410BC821B15FA900C242CF /* RxCocoa.framework */; };
 		41410BCB21B15FA900C242CF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41410BC921B15FA900C242CF /* RxSwift.framework */; };
 		41410BCD21B168A300C242CF /* DataTaskImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BCC21B168A300C242CF /* DataTaskImpl.swift */; };
@@ -127,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		411A00C21D175E5D00A9ADBB /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		4125458421B9972200C775E1 /* TweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
 		41410BC621B15D2F00C242CF /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		41410BC821B15FA900C242CF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		41410BC921B15FA900C242CF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
@@ -311,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				4196C6011D1D44EF00A45834 /* Tweet.swift */,
+				4125458421B9972200C775E1 /* TweetViewModel.swift */,
 				4196C6041D1D524D00A45834 /* TweetAttributes.swift */,
 			);
 			path = Tweet;
@@ -783,6 +787,7 @@
 				41F170321D06F9B800E401D2 /* Window.swift in Sources */,
 				4196C6131D1D664000A45834 /* OAuthAttributes.swift in Sources */,
 				417D0B8F1D04C6CA00A5ACFF /* UIStoryboard+Utils.swift in Sources */,
+				4125458521B9972200C775E1 /* TweetViewModel.swift in Sources */,
 				4196C5D31D1CB0E200A45834 /* OAuthKeyAttributes.swift in Sources */,
 				411A00C31D175E5D00A9ADBB /* String+Utils.swift in Sources */,
 				41C7E2741D021911007EC83C /* RequestConfiguration.swift in Sources */,
@@ -844,6 +849,7 @@
 				41F34ADF1D0618B900A6469F /* RequestConfiguration.swift in Sources */,
 				41410BEA21B2CD0F00C242CF /* DataTaskMultipleSuccess.swift in Sources */,
 				4196C6101D1D65B300A45834 /* StreamFilterRequestConfiguration.swift in Sources */,
+				4125458621B9D0FC00C775E1 /* TweetViewModel.swift in Sources */,
 				41410BD521B2ADAF00C242CF /* SessionDelegate.swift in Sources */,
 				41410BF021B2CDD600C242CF /* StreamServicesSuccessImpl.swift in Sources */,
 				41410BEB21B2CD0F00C242CF /* DataTaskTweetSuccess.swift in Sources */,

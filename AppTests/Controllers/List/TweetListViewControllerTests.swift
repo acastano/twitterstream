@@ -40,7 +40,7 @@ final class TweetListViewControllerTests: XCTestCase {
     }
 
     func testRetrySetsViewsAfterNoDataShown() {
-        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFailureFirstSuccessAfter()))
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFailureFirstSuccessAfter(), parser: StreamParserImpl()))
 
         controller?.view.layoutIfNeeded()
 
@@ -64,14 +64,14 @@ final class TweetListViewControllerTests: XCTestCase {
     }
 
     func testReconnectViewIsShowWhenError() {
-        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFailure()))
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFailure(), parser: StreamParserImpl()))
         controller?.view.layoutIfNeeded()
         
         XCTAssertTrue(controller?.tableView.tableFooterView == controller?.reconnectView)
     }
 
     func testReconnectViewIsAddedAfterHavingMoreThanOneTweet() {
-        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFirstSuccessFailureAfter()))
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskFirstSuccessFailureAfter(), parser: StreamParserImpl()))
         controller?.view.layoutIfNeeded()
 
         let count = controller?.tableView.numberOfRows(inSection: 0)
@@ -85,7 +85,7 @@ final class TweetListViewControllerTests: XCTestCase {
     }
 
     func testRepeatedTweetIsNotAdded() {
-        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskTweetSuccess()))
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskTweetSuccess(), parser: StreamParserImpl()))
         controller?.view.layoutIfNeeded()
 
         let count = controller?.tableView.numberOfRows(inSection: 0)
@@ -96,7 +96,7 @@ final class TweetListViewControllerTests: XCTestCase {
     }
 
     func testMaxTweetsEqualToFive() {
-        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskMultipleSuccess()))
+        controller = TweetListViewController.controller(StreamServicesImpl(dataTask: DataTaskMultipleSuccess(), parser: StreamParserImpl()))
         controller?.view.layoutIfNeeded()
 
         var count = controller?.tableView.numberOfRows(inSection: 0) ?? 0

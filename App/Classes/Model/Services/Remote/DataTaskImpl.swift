@@ -3,12 +3,12 @@ import Foundation
 
 final class DataTaskImpl: DataTask {
     private let queue: OperationQueue?
+    private let sessionDelegate: SessionDelegate
 
-    init(queue: OperationQueue?) {
+    init(queue: OperationQueue?, sessionDelegate: SessionDelegate) {
         self.queue = queue
+        self.sessionDelegate = sessionDelegate
     }
-
-    private let sessionDelegate = SessionDelegate()
 
     func loadData(_ requestConfiguration: RequestConfiguration) -> Observable<[String : Any]> {
 

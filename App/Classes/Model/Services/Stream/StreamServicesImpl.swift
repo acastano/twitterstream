@@ -4,18 +4,17 @@ import Foundation
 final class StreamServicesImpl: StreamServices {
     let filterError = PublishSubject<Error>()
     private var disposeBag = DisposeBag()
-    private let tweetsSubject = BehaviorSubject<[Tweet]>(value: [])
+    private let tweetsSubject = BehaviorSubject<[TweetViewModel]>(value: [])
 
     private let dataTask: DataTask
     private let parser: StreamParser
 
-    init (dataTask: DataTask) {
+    init (dataTask: DataTask, parser: StreamParser) {
         self.dataTask = dataTask
-
-        parser = StreamParserImpl()
+        self.parser = parser
     }
 
-    func filterByTracking(_ term: String) -> Observable<[Tweet]> {
+    func filterByTracking(_ term: String) -> Observable<[TweetViewModel]> {
         disposeBag = DisposeBag()
 
         let requestConfiguration = StreamFilterRequestConfiguration(term:term)
@@ -27,7 +26,7 @@ final class StreamServicesImpl: StreamServices {
             return response
         }
 
-        observable.subscribe(onNext: { [weak self] tweet in
+        observable.map(TweetViewModel.init).subscribe(onNext: { [weak self] tweet in
             self?.processTweet(tweet)
             }, onError: { [weak self] error in
             self?.filterError.onNext(error)
@@ -36,11 +35,11 @@ final class StreamServicesImpl: StreamServices {
         return tweetsSubject.asObservable()
     }
 
-    private func processTweet(_ tweet: (Tweet)) {
+    private func processTweet(_ viewModel: TweetViewModel) {
         if var tweets = try? tweetsSubject.value() {
-            let filter = tweets.filter() { $0.id == tweet.id }
+            let filter = tweets.filter() { $0.id == viewModel.id }
             if filter.count == 0 {
-                tweets.insert(tweet, at: 0)
+                tweets.insert(viewModel, at: 0)
                 if tweets.count > 5 {
                     tweets.removeLast()
                 }

@@ -4,8 +4,8 @@ import Foundation
 final class StreamServicesSuccessImpl: StreamServices {
     var filterError: PublishSubject<Error> { return PublishSubject() }
 
-    func filterByTracking(_ term:String) -> Observable<[Tweet]> {
-        return Observable.just([tweet()])
+    func filterByTracking(_ term:String) -> Observable<[TweetViewModel]> {
+        return Observable.just([TweetViewModel(tweet: tweet())])
     }
     
     private func tweet() -> Tweet {

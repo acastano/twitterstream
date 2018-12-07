@@ -5,7 +5,7 @@ final class StreamServicesImplTests: XCTestCase {
     private let disposeBag = DisposeBag()
 
     func testTermSuccess() {
-        let services = StreamServicesImpl(dataTask: DataTaskTweetSuccess())
+        let services = StreamServicesImpl(dataTask: DataTaskTweetSuccess(), parser: StreamParserImpl())
 
         var success = false
         services.filterByTracking("")
@@ -18,7 +18,7 @@ final class StreamServicesImplTests: XCTestCase {
     }
     
     func testTermFailure() {
-        let services = StreamServicesImpl(dataTask: DataTaskFailure())
+        let services = StreamServicesImpl(dataTask: DataTaskFailure(), parser: StreamParserImpl())
 
         var success = false
         services.filterError.observeOn(MainScheduler.instance)
@@ -35,7 +35,7 @@ final class StreamServicesImplTests: XCTestCase {
     }
 
     func testTermCorrupted() {
-        let services = StreamServicesImpl(dataTask: DataTaskTweetSuccessButCorrupted())
+        let services = StreamServicesImpl(dataTask: DataTaskTweetSuccessButCorrupted(), parser: StreamParserImpl())
 
         var success = false
         services.filterError.observeOn(MainScheduler.instance)

@@ -52,9 +52,9 @@ final class TweetListViewController: UIViewController {
 
         let results = streamServices?.filterByTracking(term)
 
-        results?.bind(to: tableView.rx.items(cellIdentifier: identifier)) { (index, tweet: Tweet, cell) in
+        results?.bind(to: tableView.rx.items(cellIdentifier: identifier)) { (index, viewModel: TweetViewModel, cell) in
             let cell = cell as? TweetViewCell
-            cell?.tweet = tweet
+            cell?.configure(viewModel)
             }
             .disposed(by: disposeBag)
 
