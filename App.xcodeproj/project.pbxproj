@@ -11,11 +11,7 @@
 		411A00C41D17609800A9ADBB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A00C21D175E5D00A9ADBB /* String+Utils.swift */; };
 		4125458521B9972200C775E1 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125458421B9972200C775E1 /* TweetViewModel.swift */; };
 		4125458621B9D0FC00C775E1 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4125458421B9972200C775E1 /* TweetViewModel.swift */; };
-		41410BCA21B15FA900C242CF /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41410BC821B15FA900C242CF /* RxCocoa.framework */; };
-		41410BCB21B15FA900C242CF /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41410BC921B15FA900C242CF /* RxSwift.framework */; };
 		41410BCD21B168A300C242CF /* DataTaskImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BCC21B168A300C242CF /* DataTaskImpl.swift */; };
-		41410BCE21B1791800C242CF /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41410BC821B15FA900C242CF /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		41410BCF21B1791800C242CF /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41410BC921B15FA900C242CF /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41410BD121B1A36200C242CF /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BD021B1A36200C242CF /* SessionDelegate.swift */; };
 		41410BD421B2A7B100C242CF /* DataTaskImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BCC21B168A300C242CF /* DataTaskImpl.swift */; };
 		41410BD521B2ADAF00C242CF /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BD021B1A36200C242CF /* SessionDelegate.swift */; };
@@ -31,8 +27,7 @@
 		41410BF421B2D22C00C242CF /* DataTaskTweetSuccessButCorrupted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BF321B2D22C00C242CF /* DataTaskTweetSuccessButCorrupted.swift */; };
 		41410BF621B2D5F900C242CF /* SessionDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BF521B2D5F900C242CF /* SessionDelegateTests.swift */; };
 		41410BF821B2DE1100C242CF /* StreamFilterRequestConfigurationProtocolNotValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41410BF721B2DE1100C242CF /* StreamFilterRequestConfigurationProtocolNotValid.swift */; };
-		416B20C01D047B0F00CAE231 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 416B20BC1D047B0F00CAE231 /* InfoPlist.strings */; };
-		416B20C11D047B0F00CAE231 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 416B20BE1D047B0F00CAE231 /* Localizable.strings */; };
+		41540166223AA23400E930F3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41540165223AA23400E930F3 /* Security.framework */; };
 		417D0B8F1D04C6CA00A5ACFF /* UIStoryboard+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417D0B8C1D04C59F00A5ACFF /* UIStoryboard+Utils.swift */; };
 		417D0B911D04C78E00A5ACFF /* NSObject+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417D0B901D04C78E00A5ACFF /* NSObject+Utils.swift */; };
 		417D0B931D04C98D00A5ACFF /* NSObject+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417D0B901D04C78E00A5ACFF /* NSObject+Utils.swift */; };
@@ -119,8 +114,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				41410BCE21B1791800C242CF /* RxCocoa.framework in Embed Frameworks */,
-				41410BCF21B1791800C242CF /* RxSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,8 +124,6 @@
 		411A00C21D175E5D00A9ADBB /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		4125458421B9972200C775E1 /* TweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
 		41410BC621B15D2F00C242CF /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
-		41410BC821B15FA900C242CF /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
-		41410BC921B15FA900C242CF /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		41410BCC21B168A300C242CF /* DataTaskImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTaskImpl.swift; sourceTree = "<group>"; };
 		41410BD021B1A36200C242CF /* SessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
 		41410BE021B2CD0F00C242CF /* DataTaskFailure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTaskFailure.swift; sourceTree = "<group>"; };
@@ -147,8 +138,7 @@
 		41410BF321B2D22C00C242CF /* DataTaskTweetSuccessButCorrupted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTaskTweetSuccessButCorrupted.swift; sourceTree = "<group>"; };
 		41410BF521B2D5F900C242CF /* SessionDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegateTests.swift; sourceTree = "<group>"; };
 		41410BF721B2DE1100C242CF /* StreamFilterRequestConfigurationProtocolNotValid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamFilterRequestConfigurationProtocolNotValid.swift; sourceTree = "<group>"; };
-		416B20BD1D047B0F00CAE231 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		416B20BF1D047B0F00CAE231 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		41540165223AA23400E930F3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4177D99B1D1C91CF00FE0499 /* App-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Bridging-Header.h"; sourceTree = "<group>"; };
 		417D0B8C1D04C59F00A5ACFF /* UIStoryboard+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Utils.swift"; sourceTree = "<group>"; };
 		417D0B901D04C78E00A5ACFF /* NSObject+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Utils.swift"; sourceTree = "<group>"; };
@@ -209,8 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41410BCB21B15FA900C242CF /* RxSwift.framework in Frameworks */,
-				41410BCA21B15FA900C242CF /* RxCocoa.framework in Frameworks */,
+				41540166223AA23400E930F3 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,15 +219,6 @@
 				411A00C21D175E5D00A9ADBB /* String+Utils.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		41410BC721B15F7100C242CF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				41410BC821B15FA900C242CF /* RxCocoa.framework */,
-				41410BC921B15FA900C242CF /* RxSwift.framework */,
-			);
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		41410BDF21B2CCEE00C242CF /* Mocks */ = {
@@ -265,13 +245,12 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
-		416B20BB1D047B0F00CAE231 /* Strings */ = {
+		41540164223AA23400E930F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				416B20BC1D047B0F00CAE231 /* InfoPlist.strings */,
-				416B20BE1D047B0F00CAE231 /* Localizable.strings */,
+				41540165223AA23400E930F3 /* Security.framework */,
 			);
-			path = Strings;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		41903A371BF7C207009E56E4 /* Configs */ = {
@@ -419,6 +398,7 @@
 				41C574521BF5491500EE38EB /* AppTests */,
 				41C5743C1BF5491500EE38EB /* Products */,
 				41903A371BF7C207009E56E4 /* Configs */,
+				41540164223AA23400E930F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -436,7 +416,6 @@
 			children = (
 				41C5745E1BF5498200EE38EB /* Classes */,
 				41C5746A1BF5498200EE38EB /* Resources */,
-				41410BC721B15F7100C242CF /* Frameworks */,
 				41C5744A1BF5491500EE38EB /* Info.plist */,
 				41410BC621B15D2F00C242CF /* Cartfile */,
 			);
@@ -506,7 +485,6 @@
 		41C5746A1BF5498200EE38EB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				416B20BB1D047B0F00CAE231 /* Strings */,
 				41C5746C1BF5498200EE38EB /* LaunchScreen */,
 				41C5746B1BF5498200EE38EB /* Assets.xcassets */,
 			);
@@ -725,10 +703,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				416B20C11D047B0F00CAE231 /* Localizable.strings in Resources */,
 				41C574721BF5498200EE38EB /* LaunchScreen.storyboard in Resources */,
 				41E436EE1D1C5E77009813E3 /* TweetListViewController.storyboard in Resources */,
-				416B20C01D047B0F00CAE231 /* InfoPlist.strings in Resources */,
 				41C574711BF5498200EE38EB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -873,25 +849,6 @@
 			targetProxy = 41C574501BF5491500EE38EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		416B20BC1D047B0F00CAE231 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				416B20BD1D047B0F00CAE231 /* Base */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		416B20BE1D047B0F00CAE231 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				416B20BF1D047B0F00CAE231 /* Base */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		41C574561BF5491500EE38EB /* Debug */ = {

@@ -18,7 +18,7 @@ final class TweetListViewController: UIViewController {
     private var streamServices: StreamServices?
     
     class func controller(_ streamServices: StreamServices) -> TweetListViewController? {
-        let controller = UIStoryboard.instantiateViewController(shortClassName(), anyClass:self) as? TweetListViewController
+        let controller = UIStoryboard.instantiateViewController(className(), anyClass:self) as? TweetListViewController
         controller?.streamServices = streamServices
         return controller
     }

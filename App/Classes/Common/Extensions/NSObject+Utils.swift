@@ -2,7 +2,7 @@ import Foundation
 
 extension NSObject {
     
-    class func shortClassName() -> String {
+    class func className() -> String {
         let name = String(describing: self)
         return name
     }
